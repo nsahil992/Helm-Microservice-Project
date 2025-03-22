@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: payment-deployment
+  labels:
+    app: payment-service
+
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: payment-service
+
+  template:
+    metadata:
+      labels:
+        app: payment-service
+
+    spec: 
+      containers:
+        - name: payment-service
+          image: nsahil992/payment-service:latest
+          ports:
+            - containerPort: 8082
