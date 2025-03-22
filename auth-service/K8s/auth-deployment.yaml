@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+  labels:
+    app: auth-service
+
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: auth-service
+
+  template:
+    metadata:
+      labels:  
+        app: auth-service
+
+    spec: 
+      containers:
+        - name: auth-service
+          image: nsahil992/auth-service:latest
+          ports:
+            - containerPort: 8081
+      
