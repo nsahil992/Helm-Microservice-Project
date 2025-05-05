@@ -1,10 +1,10 @@
-FROM golang:1.21 AS builder
+FROM golang:1.23 AS builder
 
 WORKDIR /app
 
 COPY . .
 
-RUN go build -o greet-service .
+RUN CGO_ENABLED=0 GOOS=linux go build -o greet-service .
 
 FROM alpine:latest
 
@@ -14,4 +14,4 @@ COPY --from=builder /app/greet-service .
 
 EXPOSE 8080
 
-CMD ["./greet-service"]
+ENTRYPOINT ["./greet-service"]
