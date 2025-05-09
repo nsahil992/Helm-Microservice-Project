@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: greet-service
+  repository: nsahil992/greet-service
   tag: latest
   pullPolicy: IfNotPresent
 
